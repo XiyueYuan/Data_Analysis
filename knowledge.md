@@ -52,6 +52,7 @@ bitcoin = df[df['id'] == 'bitcoin']
 Example: 
 - check the price_change_percentage in the past 24 hours
 
+*Oct. 5th, 2025, Central Time*
 ```python
 r = requests.get("https://api.coingecko.com/api/v3/coins/markets",
                  params={"vs_currency": "usd", "per_page": 10, "page": 1})
