@@ -85,3 +85,86 @@ mkcp_no.7       usd-coin       0.999703                     -0.01020      -0.01%
 mkcp_no.4         tether       1.000000                     -0.02857     -0.029%
 """
 ```
+4. `Group_by` and `.to_string()`
+
+*Oct. 5th, 2025, Central Time*
+```python
+#.to_string(index = False) can hide the index when print
+print(df_price.sort_values(by = 'price_change_percentage_24h', ascending = False).to_string(index = False))
+
+# Here is the result of the top twenty market_cap coins ranked by its price change within 24 hours, we will group them next
+"""
+id  current_price  price_change_percentage_24h percent_str
+         chainlink      23.470000                      8.77464      8.775%
+          dogecoin       0.265569                      5.52504      5.525%
+       binancecoin    1223.920000                      4.80099      4.801%
+           cardano       0.874644                      4.62363      4.624%
+          ethereum    4680.640000                      4.15790      4.158%
+     wrapped-steth    5687.410000                      4.15296      4.153%
+      staked-ether    4677.380000                      4.04258      4.043%
+wrapped-beacon-eth    5047.120000                      3.99535      3.995%
+           stellar       0.407960                      2.56475      2.565%
+      figure-heloc       0.997579                      2.26664      2.267%
+               sui       3.620000                      2.03777      2.038%
+            solana     232.280000                      1.71081      1.711%
+              tron       0.346613                      1.68025       1.68%
+       avalanche-2      30.520000                      1.64116      1.641%
+   wrapped-bitcoin  124927.000000                      1.46572      1.466%
+           bitcoin  124922.000000                      1.38116      1.381%
+            ripple       2.990000                      1.03929      1.039%
+       ethena-usde       1.000000                      0.06717      0.067%
+            tether       1.000000                      0.00299      0.003%
+          usd-coin       0.999705                     -0.00576     -0.006%
+"""
+# categories by bin
+bins = [0, 1, 10, 100, 1000, 10000, 300000]
+labels = ['<1', '1-10', '10-100', '100-1000', '1000-10000', '>10000']
+
+# pd.cut to group 
+df['price_group'] = pd.cut(df['current_price'], bins = bins, labels = labels, right = False)
+
+# group by prices
+for group_name, group_data in df.groupby('price_group'):
+    print(f"\n{group_name}:")
+    print(group_data[['id', 'current_price']].to_string(index=False))
+"""
+
+<1:
+          id  current_price
+    usd-coin       0.999805
+    dogecoin       0.267271
+        tron       0.347048
+     cardano       0.877330
+     stellar       0.409170
+figure-heloc       0.997579
+
+1-10:
+         id  current_price
+     ripple          3.000
+     tether          1.000
+ethena-usde          1.001
+        sui          3.630
+
+10-100:
+         id  current_price
+  chainlink          23.68
+avalanche-2          30.51
+
+100-1000:
+    id  current_price
+solana         232.91
+
+1000-10000:
+                id  current_price
+          ethereum        4696.35
+       binancecoin        1222.36
+      staked-ether        4692.53
+     wrapped-steth        5705.00
+wrapped-beacon-eth        5068.03
+
+>10000:
+             id  current_price
+        bitcoin       125024.0
+wrapped-bitcoin       125081.0
+"""
+```
