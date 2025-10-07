@@ -87,7 +87,7 @@ mkcp_no.4         tether       1.000000                     -0.02857     -0.029%
 ```
 4. `Group_by` and `.to_string()`
 
-*Oct. 5th, 2025, Central Time*
+*Oct. 6th, 2025, Central Time*
 ```python
 #.to_string(index = False) can hide the index when print
 print(df_price.sort_values(by = 'price_change_percentage_24h', ascending = False).to_string(index = False))
