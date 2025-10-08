@@ -168,3 +168,13 @@ wrapped-beacon-eth        5068.03
 wrapped-bitcoin       125081.0
 """
 ```
+5. `json` may return different data types, so be careful when converting it to `pd.DataFrame`: `dict`, `list[dict]`, `list[list]`
+- `pd.DataFrame` can only handle equal-length values, for example
+```python
+bad_dict = {
+    'coins': [1, 2, 3, 4, 5],       # Length: 5
+    'nfts': ['a', 'b', 'c'],        # Length: 3
+    'categories': [True, False]      # Length: 2
+}
+# pd.DataFrame(bad_dict)  connot convert to dataframe
+```
