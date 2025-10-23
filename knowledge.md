@@ -52,7 +52,6 @@ bitcoin = df[df['id'] == 'bitcoin']
 Example: 
 - check the price_change_percentage in the past 24 hours
 
-*Oct. 5th, 2025, Central Time*
 ```python
 r = requests.get("https://api.coingecko.com/api/v3/coins/markets",
                  params={"vs_currency": "usd", "per_page": 10, "page": 1})
@@ -87,7 +86,6 @@ mkcp_no.4         tether       1.000000                     -0.02857     -0.029%
 ```
 4. `Group_by` and `.to_string()`
 
-*Oct. 6th, 2025, Central Time*
 ```python
 #.to_string(index = False) can hide the index when print
 print(df_price.sort_values(by = 'price_change_percentage_24h', ascending = False).to_string(index = False))
@@ -178,3 +176,4 @@ bad_dict = {
 }
 # pd.DataFrame(bad_dict)  connot convert to dataframe
 ```
+6. 
