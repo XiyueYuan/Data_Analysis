@@ -81,3 +81,71 @@ people = {
 df = pd.DataFrame(people)
 df['gender'] = df['gender'].replace({'male': False, 'female': True})
 ```
+6. delete/drop & concat/new columns/row
+- split & expand
+```python
+people = {
+    'first': ['evan', 'john', 'jason'], 
+    'last': ['Das', 'Wachs', 'Li'], 
+    'email': ['evandas@gmail.com', 'johnwachs@hotmail.com', 'jasonli@outlook.com'], 
+    'gender': ['male', 'male', 'female']
+}
+df = pd.DataFrame(people)
+df['full_name'] = df['first'] + ' ' + df['last'] 
+
+"""
+Result
+   first   last                  email  gender   full_name
+0   evan    Das      evandas@gmail.com    male    evan Das
+1   john  Wachs  johnwachs@hotmail.com    male  john Wachs
+2  jason     Li    jasonli@outlook.com  female    jason Li
+"""
+# Or you can use existing columns to expand 
+df[['pre', 'suf']] = df['email'].str.split('@', expand = True)
+df['suf'] = df['suf'].str.split('.').str[0]
+
+# .str[0] == .apply(lambda x: x[0]), .str is a syntactic sugar in pandas
+# can apply to str, list, tuple, etc.
+
+"""
+   first   last                  email  gender   full_name        pre      suf
+0   evan    Das      evandas@gmail.com    male    evan Das    evandas    gmail
+1   john  Wachs  johnwachs@hotmail.com    male  john Wachs  johnwachs  hotmail
+2  jason     Li    jasonli@outlook.com  female    jason Li    jasonli  outlook
+"""
+```
+- concat
+```python
+people = {
+    'first': ['evan', 'john', 'jason'], 
+    'last': ['Das', 'Wachs', 'Li'], 
+    'email': ['evandas@gmail.com', 'johnwachs@hotmail.com', 'jasonli@outlook.com'], 
+    'gender': ['male', 'male', 'female']
+}
+df = pd.DataFrame(people)
+new_row = pd.DataFrame(
+    {
+        'first': ['abi'], 
+        'last': ['hachimi'], 
+        'gender': ['nonbinary']
+    }
+)
+df = pd.concat([df, new_row], ignore_index = True)
+# concat two dataframe
+"""
+Result
+  first     last                  email     gender
+0   evan      Das      evandas@gmail.com       male
+1   john    Wachs  johnwachs@hotmail.com       male
+2  jason       Li    jasonli@outlook.com     female
+3    abi  hachimi                    NaN  nonbinary
+"""
+```
+- drop
+```python
+# first filter, then access to its index
+# df.drop(integer), asking for integer
+
+filt = df['first'] == 'abi'
+df = df.drop(index = df[filt].index)
+```
