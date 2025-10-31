@@ -1,3 +1,7 @@
 data/survey_results_public.csv
 data/survey_results_schema.csv
 test.py
+data/stack-overflow-developer-survey-2019
+data/stack-overflow-developer-survey-2019/survey_results_public.csv
+data/stack-overflow-developer-survey-2019/so_survey_2019.pdf
+data/stack-overflow-developer-survey-2019/README_2019.txt
