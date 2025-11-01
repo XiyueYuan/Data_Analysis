@@ -149,3 +149,14 @@ Result
 filt = df['first'] == 'abi'
 df = df.drop(index = df[filt].index)
 ```
+7. Sort Data
+- `sort_values(by = ['col1', 'col2', ...], ascending = [True, False, ...])`, `normalize = True` return proportion
+
+8. Groupby and Aggregate
+- `df.groupby...`
+- `df.agg(['median', 'mean'])...`
+
+9. Missing Values
+- in case there are `str` NA, first replace all of them into `np.nan`: `df.replace(['NA', 'Missing', ...], np.nan)`
+- drop na notices two parameters: `subset = [...]`, and `how = 'any' / 'all'`
+- `fillna('')` fill `np.nan` values 

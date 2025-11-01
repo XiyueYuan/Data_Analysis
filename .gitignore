@@ -1,7 +1,9 @@
-data/survey_results_public.csv
-data/survey_results_schema.csv
+assets/data/survey_results_public.csv
+assets/data/survey_results_schema.csv
 test.py
-data/stack-overflow-developer-survey-2019
-data/stack-overflow-developer-survey-2019/survey_results_public.csv
-data/stack-overflow-developer-survey-2019/so_survey_2019.pdf
-data/stack-overflow-developer-survey-2019/README_2019.txt
+assets/data/stack-overflow-developer-survey-2019
+assets/data/stack-overflow-developer-survey-2019/survey_results_public.csv
+assets/data/stack-overflow-developer-survey-2019/so_survey_2019.pdf
+assets/data/stack-overflow-developer-survey-2019/README_2019.txt
+assets/data/ETH_1h.csv
+assets/images/eth_2018.png
